@@ -21,3 +21,21 @@ class Iterator:
             return value
         else:
             raise StopIteration
+
+
+class IteratorWoIndices:
+    def __init__(self, iterable, key):
+        self.iterable = iterable
+        self.key = key
+
+    def __iter__(self):
+        for index, item in enumerate(self.iterable, start=1):
+            if self.key == "чет":
+                if index % 2:
+                    continue
+            elif self.key == "нечет":
+                if not index % 2:
+                    continue
+            else:
+                raise ValueError("Only 'чет' and 'нечет' values are acceptable")
+            yield item
